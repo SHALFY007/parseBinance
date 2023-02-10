@@ -1,0 +1,23 @@
+{
+  "name": "parsebinance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/scripts/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 9070"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SHALFY007/parseBinance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SHALFY007/parseBinance/issues"
+  },
+  "homepage": "https://github.com/SHALFY007/parseBinance#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
