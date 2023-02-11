@@ -23,6 +23,8 @@
     background-color: #fff;
     width: 100%;
     min-height: 100px;
+    display: flex;
+    flex-direction: column;
 }
 .filter_hide {
     width: 100%;
@@ -34,10 +36,19 @@
     text-transform: uppercase;
     color: black;
 }
+.mode {
+    margin: 0 auto;
+}
+.action_mode {
+    border: none;
+    background: transparent;
+}
 .payload {
     display: flex;
 }
-.payloads {
+.payloads,
+.payloads-sell,
+.payloads-buy {
     margin: 0;
     padding: 0;
     width: 275px;
