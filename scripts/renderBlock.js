@@ -23,7 +23,7 @@ export function renderBlock(classEl, html, check, action) {
     }
     
     
-    if (check ) {
+    if ( check ) {
     const checker = document.querySelectorAll('.form-check')
     
     if (checker) {
@@ -34,7 +34,6 @@ export function renderBlock(classEl, html, check, action) {
                 
             })
         })
-        
     }
     }
 

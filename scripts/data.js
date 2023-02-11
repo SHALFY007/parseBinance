@@ -1,28 +1,53 @@
 import { getParseObj } from "./parser.js"
 import { getLayout } from "./createLayout.js"
 
+const objBuy = await getParseObj('buy').then(data => data)
+const objSell = await getParseObj('sell').then(data => data)
+
+
 async function getData(action, payload, classEl, check='') {
     const methods = []
+    console.log(objBuy)
+    // let obj = {}
 
-    let obj = {}
-
-    await getParseObj(action).then(data => obj = data)
-    for (let key in obj) {
-        obj[key].forEach(el => {
-            if (typeof el[payload] === "object") {
-                el[payload].forEach(e => {
-                    if (!methods.includes(e)) {
-                        methods.push(e)
-                    }
-                })
-            }
-            if (typeof el[payload] === "string") {
-                if (!methods.includes(el[payload])) {
-                    methods.push(el[payload])
-                } 
-            }
-            // console.log(typeof  el[payload])
+    // await getParseObj(action).then(data => obj = data)
+    if (action == 'buy') {
+        for (let key in objBuy) {
+            objBuy[key].forEach(el => {
+                if (typeof el[payload] === "object") {
+                    el[payload].forEach(e => {
+                        if (!methods.includes(e)) {
+                            methods.push(e)
+                        }
+                    })
+                }
+                if (typeof el[payload] === "string") {
+                    if (!methods.includes(el[payload])) {
+                        methods.push(el[payload])
+                    } 
+                }
+                // console.log(typeof  el[payload])
         });
+    } 
+    
+    } else {
+        for (let key in objSell) {
+            objSell[key].forEach(el => {
+                if (typeof el[payload] === "object") {
+                    el[payload].forEach(e => {
+                        if (!methods.includes(e)) {
+                            methods.push(e)
+                        }
+                    })
+                }
+                if (typeof el[payload] === "string") {
+                    if (!methods.includes(el[payload])) {
+                        methods.push(el[payload])
+                    } 
+                }
+                // console.log(typeof  el[payload])
+        });
+    } 
     }
 
     getLayout(methods, classEl, check, action)

@@ -6,6 +6,9 @@
 .hide {
     display: none !important;
 }
+.activate {
+    color: green !important;
+}
 .container {
     width: 1124px;
     display: flex;
@@ -40,11 +43,15 @@
     margin: 0 auto;
 }
 .action_mode {
+    text-transform: uppercase;
     border: none;
     background: transparent;
 }
 .payload {
     display: flex;
+}
+.payload div[class~="line"] {
+    border-right: 1px solid #dee2e6;
 }
 .payloads,
 .payloads-sell,
@@ -64,4 +71,10 @@
 .paymethods-header, .exchange-header,
 .currencies-header {
     text-transform: uppercase;
+}
+.input-part {
+    display: flex;
+}
+.filter-input {
+    max-width: 150px;
 }
