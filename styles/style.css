@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+.hide {
+    display: none !important;
+}
 .container {
     width: 1124px;
     display: flex;
@@ -18,6 +21,36 @@
 }
 .filters {
     background-color: #fff;
-    width: 500px;
+    width: 100%;
     min-height: 100px;
+}
+.filter_hide {
+    width: 100%;
+    background-color: darkgray;
+    height: 50px;
+    border: none;
+}
+.filter_hide_txt {
+    text-transform: uppercase;
+    color: black;
+}
+.payload {
+    display: flex;
+}
+.payloads {
+    margin: 0;
+    padding: 0;
+    width: 275px;
+}
+.payload-switch {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.paymethods {
+    justify-content: center;
+}
+.paymethods-header, .exchange-header,
+.currencies-header {
+    text-transform: uppercase;
 }

@@ -1,11 +1,19 @@
-import { getPaymethods } from "./paymethods.js"
-import { getParseObj } from "./parser.js"
-import { paymethodsLayout } from "./createLayout.js"
+import { getPaymethods } from "./data.js"
+import { getLayout } from "./createLayout.js"
 import { renderBlock } from "./renderBlock.js"
+import { getExchange } from "./data.js"
+import { getCurrencies } from "./data.js"
 
 const filters = document.querySelector('.filters')
+const hideBtn = document.querySelector('.filter_hide')
 
 window.addEventListener('load', () => {
-    renderBlock(filters, paymethodsLayout(getPaymethods()))
+    hideBtn.addEventListener('click', () => {
+        filters.classList.add('hide')
+    })
     getPaymethods()
+    getExchange()
+    getCurrencies()
+
+
 })
