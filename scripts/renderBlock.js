@@ -28,7 +28,10 @@ export function renderBlock(classEl, html, check, action) {
     
 }
 
-
+export function allMethods(IdEl, layout) {
+    let el = document.getElementById(IdEl)
+    el.innerHTML = layout
+}
 
 export function renderList(IdEl, layout) {
     let el = document.getElementById(IdEl)

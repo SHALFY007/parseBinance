@@ -3,6 +3,9 @@ import { getExchange } from "./data.js"
 import { getCurrencies } from "./data.js"
 import { getPayIcons } from "./data.js"
 import { renderList } from "./renderBlock.js"
+import { buyClick } from "./openClicks.js"
+import { sellClick } from "./openClicks.js"
+import { allMethods } from "./renderBlock.js"
 
 const filters = document.querySelector('.filters')
 const hideBtn = document.querySelector('.filter_hide')
@@ -10,21 +13,15 @@ const buy = document.querySelector('#buy')
 const sell = document.querySelector('#sell')
 const removeAll = document.querySelector('#remove_all')
 const addAll = document.querySelector('#add_all')
+const orderBuy = document.querySelector('#order_buy')
+const orderSell = document.querySelector('#order_sell')
 
 const data = ['paymethods', 'exchange', 'currencies']
 
 function start() {
-    buy.classList.remove('activate')
-    sell.classList.add('activate')
-    getPaymethods('sell')
-    getExchange('sell')
-    getCurrencies('sell')
+    sellClick(buy, sell)
     getPayIcons(data, 'sell')
-    buy.classList.add('activate')
-    sell.classList.remove('activate')
-    getPaymethods()
-    getExchange()
-    getCurrencies()
+    buyClick(buy, sell)
 }
 
 if (document.readyState !== 'loading') {
@@ -43,21 +40,13 @@ if (document.readyState !== 'loading') {
     
     buy.addEventListener('click', () => {
         if (!buy.classList.contains('activate')) {
-            buy.classList.add('activate')
-            sell.classList.remove('activate')
-            getPaymethods()
-            getExchange()
-            getCurrencies()
+            buyClick(buy, sell)
         }
         
     })
     sell.addEventListener('click', () => {
         if (!sell.classList.contains('activate')) {
-            buy.classList.remove('activate')
-            sell.classList.add('activate')
-            getPaymethods('sell')
-            getExchange('sell')
-            getCurrencies('sell')
+            sellClick(buy, sell)
         }
     })
     
@@ -66,11 +55,35 @@ if (document.readyState !== 'loading') {
         document.querySelectorAll('.form-check-input').forEach(e => {
             e.checked = false
         })
+        if (buy.classList.contains('activate')) {
+            allMethods('order_imges_buy', '')
+        } else {
+            allMethods('order_imges_sell', '')
+        }
+        
     })
     addAll.addEventListener('click', () => {
         document.querySelectorAll('.form-check-input').forEach(e => {
             e.checked = true
         })
+        if (buy.classList.contains('activate')) {
+            allMethods('order_imges_buy', '')
+            getPayIcons(data)
+        } else {
+            allMethods('order_imges_sell', '')
+            getPayIcons(data, 'sell')
+        }
+        
+    })
+
+    orderBuy.addEventListener('click', () => {
+        if (filters.classList.contains('hide')) filters.classList.remove('hide')
+        buyClick(buy, sell)
+    })
+
+    orderSell.addEventListener('click', () => {
+        if (filters.classList.contains('hide')) filters.classList.remove('hide')
+        sellClick(buy, sell)
     })
 
     getPayIcons(data)
