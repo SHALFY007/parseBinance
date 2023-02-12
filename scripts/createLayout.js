@@ -14,7 +14,7 @@ export function getLayout(methods, classEl, check, action) {
             <img src="./img/${link}.png" alt="${link}" class="logo">
             <span class="value">${el}</span> 
             <div class="form-check form-switch form-${classEl}">
-            <input class="form-check-input form-${link}" type="checkbox" id="flexSwitchCheckDefault" checked>
+            <input class="form-check-input form-${action}" type="checkbox" id="flexSwitchCheckDefault" checked>
             </div></li>`
         });
     } catch (error) {

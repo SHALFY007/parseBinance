@@ -2,10 +2,10 @@ import { getPaymethods } from "./data.js"
 import { getExchange } from "./data.js"
 import { getCurrencies } from "./data.js"
 import { getPayIcons } from "./data.js"
-import { renderList } from "./renderBlock.js"
 import { buyClick } from "./openClicks.js"
 import { sellClick } from "./openClicks.js"
 import { allMethods } from "./renderBlock.js"
+import { checkerData } from "./checker.js"
 
 const filters = document.querySelector('.filters')
 const hideBtn = document.querySelector('.filter_hide')
@@ -51,29 +51,38 @@ if (document.readyState !== 'loading') {
     })
     
     removeAll.addEventListener('click', () => {
-        
-        document.querySelectorAll('.form-check-input').forEach(e => {
-            e.checked = false
-        })
+
         if (buy.classList.contains('activate')) {
-            allMethods('order_imges_buy', '')
+            document.querySelectorAll('.form-buy').forEach(e => {
+                e.checked = false
+                allMethods('order_imges_buy', '')
+            })
+             
         } else {
-            allMethods('order_imges_sell', '')
+            document.querySelectorAll('.form-sell').forEach(e => {
+                e.checked = false
+                allMethods('order_imges_sell', '')
+            })
+             
         }
         
     })
     addAll.addEventListener('click', () => {
-        document.querySelectorAll('.form-check-input').forEach(e => {
-            e.checked = true
-        })
         if (buy.classList.contains('activate')) {
-            allMethods('order_imges_buy', '')
-            getPayIcons(data)
+            document.querySelectorAll('.form-buy').forEach(e => {
+                e.checked = true
+                allMethods('order_imges_buy', '')
+                getPayIcons(data)
+            })
+             
         } else {
-            allMethods('order_imges_sell', '')
-            getPayIcons(data, 'sell')
+            document.querySelectorAll('.form-sell').forEach(e => {
+                e.checked = true
+                allMethods('order_imges_sell', '')
+                getPayIcons(data, 'sell')
+            })
+             
         }
-        
     })
 
     orderBuy.addEventListener('click', () => {
@@ -88,52 +97,9 @@ if (document.readyState !== 'loading') {
 
     getPayIcons(data)
     const checker = document.querySelectorAll('.form-check')
-    const isBuy = document.querySelector('.payloads-buy-paymethods-list')
         
         if (checker) {
-            checker.forEach(el => {
-                el.addEventListener('input', (e) => {
-                    let isChecked = e.target.checked
-                    let valueName =  e.target.parentNode.parentNode.querySelector('.value')
-                    let imgId =  valueName.innerHTML.toLowerCase().split(' ').join('')
-                    
-                    if (!isBuy.classList.contains('hide')) {
-                        if (!isChecked) {
-                            if(imgId.includes('(')) {
-                                let ind = imgId.indexOf('(')
-                                imgId = imgId.substring(0, ind)
-                                
-                            }
-                            let delEl = document.querySelector(`#${imgId}-buy`)
-                            delEl.remove()
-                        } else {
-                            if(imgId.includes('(')) {
-                                let ind = imgId.indexOf('(')
-                                imgId = imgId.substring(0, ind)
-                                
-                            }
-                            let link = `./img/${imgId}.png`
-                            renderList('order_imges_buy', `<img src="${link}" alt="${imgId}" id="${imgId}-buy" class="logo">`)
-                        }
-                        
-                    } else {
-                        if (!isChecked) {
-                            if(imgId.includes('(')) {
-                                let ind = imgId.indexOf('(')
-                                imgId = imgId.substring(0, ind)
-                                
-                            }
-                            let delEl = document.querySelector(`#${imgId}-sell`)
-                                delEl.remove()
-                        } else {
-                            let link = `./img/${imgId}.png`
-                            renderList('order_imges_sell', `<img src="${link}" alt="${imgId}" id="${imgId}-sell" class="logo">`)
-                        }
-                    }
-                     }
-
-                )
-            })
+            checkerData(checker)
         }
 
 }
