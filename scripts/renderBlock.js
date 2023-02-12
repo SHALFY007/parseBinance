@@ -25,37 +25,6 @@ export function renderBlock(classEl, html, check, action) {
             
         }
     }
-
-    if ( check ) {
-        console.log('check!!')
-        // const checker = document.querySelectorAll('.form-check')
-        
-        // if (checker) {
-        //     console.log(checker)
-        //     checker.forEach(el => {
-        //         el.addEventListener('input', (e) => {
-        //             let isChecked = e.target.checked
-        //             let valueName =  e.target.parentNode.parentNode.querySelector('.value')
-        //             let imgId =  valueName.innerHTML.toLowerCase().split(' ').join('')
-                    
-        //             if (!isChecked) {       
-        //                 if(imgId.includes('(')) {
-        //                 let ind = imgId.indexOf('(')
-        //                 imgId = imgId.substring(0, ind)
-        //                 console.log(imgId)
-        //             }
-                    
-        //             let delEl = document.querySelector(`#${imgId}-buy`)
-        //             delEl.remove()
-        //             } else {
-        //                 let link = `./img/${imgId}.png`
-        //                 renderList('order_imges_buy', `<img src="${link}" alt="${imgId}" id="${imgId}-buy" class="logo">`)
-        //             }
-        //         })
-        //     })
-        // }
-        }
-    
     
 }
 

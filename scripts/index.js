@@ -11,6 +11,7 @@ const sell = document.querySelector('#sell')
 const removeAll = document.querySelector('#remove_all')
 const addAll = document.querySelector('#add_all')
 
+const data = ['paymethods', 'exchange', 'currencies']
 
 function start() {
     buy.classList.remove('activate')
@@ -18,7 +19,7 @@ function start() {
     getPaymethods('sell')
     getExchange('sell')
     getCurrencies('sell')
-    getPayIcons('sell')
+    getPayIcons(data, 'sell')
     buy.classList.add('activate')
     sell.classList.remove('activate')
     getPaymethods()
@@ -72,12 +73,11 @@ if (document.readyState !== 'loading') {
         })
     })
 
-    getPayIcons()
+    getPayIcons(data)
     const checker = document.querySelectorAll('.form-check')
     const isBuy = document.querySelector('.payloads-buy-paymethods-list')
         
         if (checker) {
-            console.log(checker)
             checker.forEach(el => {
                 el.addEventListener('input', (e) => {
                     let isChecked = e.target.checked
@@ -89,7 +89,6 @@ if (document.readyState !== 'loading') {
                             if(imgId.includes('(')) {
                                 let ind = imgId.indexOf('(')
                                 imgId = imgId.substring(0, ind)
-                                console.log(imgId)
                                 
                             }
                             let delEl = document.querySelector(`#${imgId}-buy`)
@@ -98,7 +97,6 @@ if (document.readyState !== 'loading') {
                             if(imgId.includes('(')) {
                                 let ind = imgId.indexOf('(')
                                 imgId = imgId.substring(0, ind)
-                                console.log(imgId)
                                 
                             }
                             let link = `./img/${imgId}.png`
@@ -110,7 +108,6 @@ if (document.readyState !== 'loading') {
                             if(imgId.includes('(')) {
                                 let ind = imgId.indexOf('(')
                                 imgId = imgId.substring(0, ind)
-                                console.log(imgId)
                                 
                             }
                             let delEl = document.querySelector(`#${imgId}-sell`)

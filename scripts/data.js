@@ -67,9 +67,10 @@ export async function getCurrencies(action='buy') {
     getData(action, 'cryptocurrency', 'currencies-list', 'checked')
     
 }
-export async function getPayIcons(action='buy') {
+export async function getPayIcons(blocks, action='buy') {
     let images = []
-    const findBlock = document.querySelector(`.payloads-${action}-paymethods-list`)
+    blocks.forEach((el) => {
+        const findBlock = document.querySelector(`.payloads-${action}-${el}-list`)
     try {
         findBlock.querySelectorAll('.logo').forEach(e => {
             let a = new Object()
@@ -81,6 +82,8 @@ export async function getPayIcons(action='buy') {
     } catch(e) {
         console.log(e)
     }
+    })
+    
     
 
     getIcons(images, action)

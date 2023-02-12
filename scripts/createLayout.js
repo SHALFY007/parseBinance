@@ -6,10 +6,14 @@ export function getLayout(methods, classEl, check, action) {
         
         methods.forEach(el => {
             let link = el.toLowerCase().split(' ').join('')
+            if(link.includes('(')) {
+                let ind = link.indexOf('(')
+                link = link.substring(0, ind)
+            }
             layout += `<li class="payload-switch">
             <img src="./img/${link}.png" alt="${link}" class="logo">
             <span class="value">${el}</span> 
-            <div class="form-check form-switch">
+            <div class="form-check form-switch form-${classEl}">
             <input class="form-check-input form-${link}" type="checkbox" id="flexSwitchCheckDefault" checked>
             </div></li>`
         });
