@@ -70,13 +70,18 @@ export async function getCurrencies(action='buy') {
 export async function getPayIcons(action='buy') {
     let images = []
     const findBlock = document.querySelector(`.payloads-${action}-paymethods-list`)
-    findBlock.querySelectorAll('.logo').forEach(e => {
-        let a = new Object()
-        a.path = e.attributes.src.value
-        a.name = e.alt
-        // console.log(a)
-        images.push(a)
-    })
+    try {
+        findBlock.querySelectorAll('.logo').forEach(e => {
+            let a = new Object()
+            a.path = e.attributes.src.value
+            a.name = e.alt
+            // console.log(a)
+            images.push(a)
+        })
+    } catch(e) {
+        console.log(e)
+    }
+    
 
     getIcons(images, action)
 }
