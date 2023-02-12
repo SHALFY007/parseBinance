@@ -1,13 +1,16 @@
-import { renderBlock } from "./renderBlock.js";
+import { renderBlock, renderList } from "./renderBlock.js";
 
 export function getLayout(methods, classEl, check, action) {
     let layout = ``
     try {
+        
         methods.forEach(el => {
+            let link = el.toLowerCase().split(' ').join('')
             layout += `<li class="payload-switch">
+            <img src="./img/${link}.png" alt="${link}" class="logo">
             <span class="value">${el}</span> 
             <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+            <input class="form-check-input form-${link}" type="checkbox" id="flexSwitchCheckDefault" checked>
             </div></li>`
         });
     } catch (error) {
@@ -20,4 +23,22 @@ export function getLayout(methods, classEl, check, action) {
         ${layout}
     </ul>
     `, check, action)
+}
+
+export function getIcons(icons, action) {
+    let layout = ``
+
+    try {
+        icons.forEach(e => {
+            let link = e.path.toLowerCase().split(' ').join('')
+            if(e.name.includes('(')) {
+                let ind = e.name.indexOf('(')
+                e.name = e.name.substring(0, ind)
+            }
+            layout += `<img src="${link}" alt="${e.name}" id="${e.name}-${action}" class="logo">`
+        })
+    } catch (error) {
+        console.log(error)
+    }
+    renderList(`order_imges_${action}`, layout)
 }

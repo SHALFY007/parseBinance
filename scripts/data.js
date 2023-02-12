@@ -1,5 +1,6 @@
 import { getParseObj } from "./parser.js"
 import { getLayout } from "./createLayout.js"
+import { getIcons } from "./createLayout.js"
 
 const objBuy = await getParseObj('buy').then(data => data)
 const objSell = await getParseObj('sell').then(data => data)
@@ -65,4 +66,17 @@ export async function getExchange(action='buy') {
 export async function getCurrencies(action='buy') {
     getData(action, 'cryptocurrency', 'currencies-list', 'checked')
     
+}
+export async function getPayIcons(action='buy') {
+    let images = []
+    const findBlock = document.querySelector(`.payloads-${action}-paymethods-list`)
+    findBlock.querySelectorAll('.logo').forEach(e => {
+        let a = new Object()
+        a.path = e.attributes.src.value
+        a.name = e.alt
+        // console.log(a)
+        images.push(a)
+    })
+
+    getIcons(images, action)
 }

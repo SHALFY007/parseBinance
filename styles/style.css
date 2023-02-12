@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-transform: uppercase;
 }
 .hide {
     display: none !important;
@@ -62,8 +63,12 @@
 }
 .payload-switch {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     
+}
+.logo {
+    max-height  : 16px;
 }
 .paymethods {
     justify-content: center;
@@ -72,9 +77,32 @@
 .currencies-header {
     text-transform: uppercase;
 }
+.all_btn {
+    border-radius: 5px;
+    background: transparent;
+}
 .input-part {
     display: flex;
 }
 .filter-input {
     max-width: 150px;
+}
+.orders {
+    display: flex;
+    width: 100%;
+}
+.buy_orders,
+.sell_orders  {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.order_header {
+    text-transform: uppercase;
+}
+.order_btn {
+    width: 100%;
+    min-height: 30px;
+    overflow: hidden;
 }

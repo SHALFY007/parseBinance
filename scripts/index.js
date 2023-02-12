@@ -1,6 +1,7 @@
 import { getPaymethods } from "./data.js"
 import { getExchange } from "./data.js"
 import { getCurrencies } from "./data.js"
+import { getPayIcons } from "./data.js"
 
 const filters = document.querySelector('.filters')
 const hideBtn = document.querySelector('.filter_hide')
@@ -9,12 +10,21 @@ const sell = document.querySelector('#sell')
 const removeAll = document.querySelector('#remove_all')
 const addAll = document.querySelector('#add_all')
 
-getPaymethods()
-getExchange()
-getCurrencies()
+
+
+
+
 
 if (document.readyState !== 'loading') {
+    getPaymethods()
+    getExchange()
+    getCurrencies()
+    getPaymethods('sell')
+    getExchange('sell')
+    getCurrencies('sell')
+
 // document.addEventListener('DOMContentLoaded', () => {
+
     console.log('1111')
     hideBtn.addEventListener('click', () => {
         filters.classList.add('hide')
@@ -51,6 +61,9 @@ if (document.readyState !== 'loading') {
             e.checked = true
         })
     })
+
+    getPayIcons()
+    getPayIcons('sell')
 
 // })
 }
