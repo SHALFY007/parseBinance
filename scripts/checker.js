@@ -11,6 +11,15 @@ export function checkerData(checker) {
             let imgId =  valueName.innerHTML.toLowerCase().split(' ').join('')
             
             if (!isBuy.classList.contains('hide')) {
+                //Test
+            if(imgId.includes('(')) {
+                let ind = imgId.indexOf('(')
+                imgId = imgId.substring(0, ind)
+            }
+            document.querySelectorAll(`.order-${imgId}-buy`).forEach(e => {
+                e.parentElement.parentNode.remove()
+            })
+            //end test
                 if (!isChecked) {
                     if(imgId.includes('(')) {
                         let ind = imgId.indexOf('(')
@@ -30,6 +39,15 @@ export function checkerData(checker) {
                 }
                 
             } else {
+                //Test
+            if(imgId.includes('(')) {
+                let ind = imgId.indexOf('(')
+                imgId = imgId.substring(0, ind)
+            }
+            document.querySelectorAll(`.order-${imgId}-sell`).forEach(e => {
+                e.parentElement.parentNode.remove()
+            })
+            //end test
                 if (!isChecked) {
                     if(imgId.includes('(')) {
                         let ind = imgId.indexOf('(')

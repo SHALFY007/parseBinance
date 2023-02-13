@@ -89,8 +89,12 @@ export async function getOrders(action='buy') {
     let orders = []
 
     try {
-        for (let key in objBuy) {
-           objBuy[key].forEach(e => {
+        let obj = objBuy
+        if (action !== 'buy') {
+            obj = objSell
+        } 
+        for (let key in obj) {
+           obj[key].forEach(e => {
             let order = new Object()
             order.currency = e.cryptocurrency
             order.exchange = 'Binance'
@@ -100,7 +104,7 @@ export async function getOrders(action='buy') {
                 if(link.includes('(')) {
                 let ind = link.indexOf('(')
                 link = link.substring(0, ind)
-            }  
+            }
             order.payments.push(link) 
             })
             order.volume = e.limit.min

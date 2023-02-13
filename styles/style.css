@@ -109,6 +109,9 @@
 .orders_list {
     width: 100%;
 }
+#buy_order_list {
+    
+}
 .order {
     display: flex;
     justify-content: space-between;

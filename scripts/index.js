@@ -33,6 +33,7 @@ if (document.readyState !== 'loading') {
     getCurrencies()
 
     getOrders()
+    getOrders('sell')
     
     start()
 
