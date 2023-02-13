@@ -1,6 +1,7 @@
 import { getParseObj } from "./parser.js"
 import { getLayout } from "./createLayout.js"
 import { getIcons } from "./createLayout.js"
+import { getOrderList } from "./createLayout.js"
 
 const objBuy = await getParseObj('buy').then(data => data)
 const objSell = await getParseObj('sell').then(data => data)
@@ -8,10 +9,7 @@ const objSell = await getParseObj('sell').then(data => data)
 
 async function getData(action, payload, classEl, check='') {
     const methods = []
-    console.log(objBuy)
-    // let obj = {}
 
-    // await getParseObj(action).then(data => obj = data)
     if (action == 'buy') {
         for (let key in objBuy) {
             objBuy[key].forEach(el => {
@@ -27,7 +25,6 @@ async function getData(action, payload, classEl, check='') {
                         methods.push(el[payload])
                     } 
                 }
-                // console.log(typeof  el[payload])
         });
     } 
     
@@ -46,7 +43,6 @@ async function getData(action, payload, classEl, check='') {
                         methods.push(el[payload])
                     } 
                 }
-                // console.log(typeof  el[payload])
         });
     } 
     }
@@ -87,4 +83,35 @@ export async function getPayIcons(blocks, action='buy') {
     
 
     getIcons(images, action)
+}
+
+export async function getOrders(action='buy') {
+    let orders = []
+
+    try {
+        for (let key in objBuy) {
+           objBuy[key].forEach(e => {
+            let order = new Object()
+            order.currency = e.cryptocurrency
+            order.exchange = 'Binance'
+            order.payments = []
+            e.paymethod.forEach(el => {
+                let link = el.toLowerCase().split(' ').join('')
+                if(link.includes('(')) {
+                let ind = link.indexOf('(')
+                link = link.substring(0, ind)
+            }  
+            order.payments.push(link) 
+            })
+            order.volume = e.limit.min
+            order.price = e.price
+
+            orders.push(order)
+           })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+    getOrderList(orders, action)
 }

@@ -46,3 +46,33 @@ export function getIcons(icons, action) {
     }
     renderList(`order_imges_${action}`, layout)
 }
+
+export function getOrderList(orders, action) {
+    let layout = ``
+
+    try {
+        
+        orders.forEach(e => {
+            
+            if (e.payments.length <2) {
+                layout += `<div class="order">${e.currency} ${e.exchange} 
+            <img src="./img/${e.payments}.png" alt="${e.payments}" class='logo'> ${e.volume} ${e.price}</div>`
+            } else {
+                console.log(e.payments.length)
+                let imgLay = ``
+                e.payments.forEach(el => {
+                    imgLay += `<img src="./img/${el}.png" alt="${el}" class='logo'> `
+                })
+                layout += `<div class="order">${e.currency} ${e.exchange} 
+                <div class="order_payments">${imgLay}</div> ${e.volume} ${e.price}</div>`
+            }
+            
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+    // console.log(layout)
+
+    renderList('buy_order_list', layout)
+}

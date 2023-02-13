@@ -6,6 +6,7 @@ import { buyClick } from "./openClicks.js"
 import { sellClick } from "./openClicks.js"
 import { allMethods } from "./renderBlock.js"
 import { checkerData } from "./checker.js"
+import { getOrders } from "./data.js"
 
 const filters = document.querySelector('.filters')
 const hideBtn = document.querySelector('.filter_hide')
@@ -30,6 +31,8 @@ if (document.readyState !== 'loading') {
     getPaymethods()
     getExchange()
     getCurrencies()
+
+    getOrders()
     
     start()
 

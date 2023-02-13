@@ -106,3 +106,10 @@
     min-height: 30px;
     overflow: hidden;
 }
+.orders_list {
+    width: 100%;
+}
+.order {
+    display: flex;
+    justify-content: space-between;
+}
