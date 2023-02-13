@@ -55,16 +55,15 @@ export function getOrderList(orders, action) {
         orders.forEach(e => {
             
             if (e.payments.length <2) {
-                layout += `<div class="order">${e.currency} ${e.exchange} <div class="order_payments">
-            <img src="./img/${e.payments}.png" alt="${e.payments}" class='logo order-${e.payments}-${action}'></div> ${e.volume} ${e.price}</div>`
+                layout += `<div class="order"><div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div>  ${e.exchange} <div class="order_payments">
+            <img src="./img/${e.payments}.png" alt="${e.payments}" class='logo order-${e.payments}-${action}'></div> ${e.volumeMin}-${e.volumeMax} ${e.price}</div>`
             } else {
-                console.log(e.payments.length)
                 let imgLay = ``
                 e.payments.forEach(el => {
                     imgLay += `<img src="./img/${el}.png" alt="${el}" class='logo order-${el}-${action}'> `
                 })
-                layout += `<div class="order">${e.currency} ${e.exchange} 
-                <div class="order_payments">${imgLay}</div> ${e.volume} ${e.price}</div>`
+                layout += `<div class="order"><div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div> ${e.exchange} 
+                <div class="order_payments">${imgLay}</div> ${e.volumeMin}-${e.volumeMax} ${e.price}</div>`
             }
             
         })

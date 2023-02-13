@@ -107,7 +107,8 @@ export async function getOrders(action='buy') {
             }
             order.payments.push(link) 
             })
-            order.volume = e.limit.min
+            order.volumeMin = e.limit.min
+            order.volumeMax = e.limit.max
             order.price = e.price
 
             orders.push(order)
@@ -116,6 +117,8 @@ export async function getOrders(action='buy') {
     } catch (error) {
         console.log(error)
     }
-
+    orders.sort(function(a, b) {
+        return a.price - b.price
+    })
     getOrderList(orders, action)
 }

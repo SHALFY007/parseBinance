@@ -60,12 +60,14 @@ if (document.readyState !== 'loading') {
             document.querySelectorAll('.form-buy').forEach(e => {
                 e.checked = false
                 allMethods('order_imges_buy', '')
+                allMethods('buy_order_list', '')
             })
              
         } else {
             document.querySelectorAll('.form-sell').forEach(e => {
                 e.checked = false
                 allMethods('order_imges_sell', '')
+                allMethods('sell_order_list', '')
             })
              
         }
