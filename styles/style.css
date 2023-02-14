@@ -10,6 +10,10 @@
 .activate {
     color: green !important;
 }
+
+.active_bg {
+    background: green !important;
+}
 .container {
     width: 1124px;
     display: flex;
@@ -113,6 +117,13 @@
     
 }
 .order {
+    display: flex;
+    justify-content: space-between;
+}
+.order_info {
+
+}
+.order_drop {
     display: flex;
     justify-content: space-between;
 }

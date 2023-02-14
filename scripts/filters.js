@@ -5,13 +5,13 @@ export function hideEl(imgId, currencyId, e, action) {
     }
     if(e.target.parentElement.classList.contains('form-currencies-list')) {
         document.querySelectorAll(`.order-currency-${currencyId}-${action}`).forEach(e => {
-            e.parentNode.classList.add('hide')
+            e.parentNode.parentNode.classList.add('hide')
         })
     } else {
         document.querySelectorAll(`.order-${imgId}-${action}`).forEach(e => {
             if (e.parentElement.children.length < 2 || e.parentElement.querySelectorAll('.hide').length === e.parentElement.children.length-1) {
 
-                e.parentElement.parentNode.classList.add('hide')
+                e.parentElement.parentNode.parentNode.classList.add('hide')
             } else {
                 e.classList.add('hide')
             }
@@ -26,13 +26,13 @@ export function showEl(imgId, currencyId, e, action) {
     }
     if(e.target.parentElement.classList.contains('form-currencies-list')) {
         document.querySelectorAll(`.order-currency-${currencyId}-${action}`).forEach(e => {
-            e.parentNode.classList.remove('hide')
+            e.parentNode.parentNode.classList.remove('hide')
         })
     } else {
         document.querySelectorAll(`.order-${imgId}-${action}`).forEach(e => {
             if (e.parentElement.children.length < 2 || e.parentElement.querySelectorAll('.hide').length <= e.parentElement.children.length-1) {
                 
-                e.parentElement.parentNode.classList.remove('hide')
+                e.parentElement.parentNode.parentNode.classList.remove('hide')
                 e.classList.remove('hide')
             } else {
                 e.classList.remove('hide')

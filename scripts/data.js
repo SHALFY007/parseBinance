@@ -110,7 +110,9 @@ export async function getOrders(action='buy') {
             order.volumeMin = e.limit.min
             order.volumeMax = e.limit.max
             order.price = e.price
-
+            order.owner = e.owner
+            order.rate = Math.floor(e.owner_stat.owner_finish_rate)
+            order.count = e.owner_stat.owner_order_count
             orders.push(order)
            })
         }

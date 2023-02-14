@@ -8,6 +8,7 @@ import { allMethods } from "./renderBlock.js"
 import { checkerData } from "./checker.js"
 import { getOrders } from "./data.js"
 import { hideAllEl } from "./filters.js"
+import { proFilters } from "./proFilters.js"
 
 const filters = document.querySelector('.filters')
 const hideBtn = document.querySelector('.filter_hide')
@@ -112,5 +113,25 @@ if (document.readyState !== 'loading') {
         if (checker) {
             checkerData(checker)
         }
+    let order = document.querySelectorAll('.order')
 
+    if (order) {
+        order.forEach(e => {
+            e.addEventListener('click', event => {
+                console.log(event)
+                if (document.querySelector('.active_bg') && document.querySelector('.active_bg') != event.target) {
+                    document.querySelector('.active_bg').parentNode.querySelector('.order_drop').classList.add('hide')
+                    document.querySelector('.active_bg').classList.remove('active_bg')
+                    
+                }
+                // console.log(event.target)
+                let infoEl = event.target.parentNode.querySelector('.order_drop')
+                infoEl.classList.toggle('hide')
+                event.target.classList.toggle('active_bg')
+            })
+        })
+    }   
+    
+
+    proFilters()
 }

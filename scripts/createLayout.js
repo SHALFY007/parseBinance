@@ -55,15 +55,33 @@ export function getOrderList(orders, action) {
         orders.forEach(e => {
             
             if (e.payments.length <2) {
-                layout += `<div class="order"><div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div>  ${e.exchange} <div class="order_payments">
-            <img src="./img/${e.payments}.png" alt="${e.payments}" class='logo order-${e.payments}-${action}'></div> ${e.volumeMin}-${e.volumeMax} ${e.price}</div>`
+                layout += `
+                <div>
+                <div class="order">
+                <div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div>  ${e.exchange} <div class="order_payments">
+                 <img src="./img/${e.payments}.png" alt="${e.payments}" class='logo order-${e.payments}-${action}'></div> 
+                 <div class="volume"><span class="volume-min">${e.volumeMin}</span>-<span class="volume-max">${e.volumeMax}</span></div>
+                  ${e.price} <br>
+                 
+                </div>
+                <div class="order_drop hide">Продавец:${e.owner} Рейтинг:<span class="rate">${e.rate}</span>% Сделок:<span class="count">${e.count}</span></div>   
+                </div>
+                `
             } else {
                 let imgLay = ``
                 e.payments.forEach(el => {
                     imgLay += `<img src="./img/${el}.png" alt="${el}" class='logo order-${el}-${action}'> `
                 })
-                layout += `<div class="order"><div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div> ${e.exchange} 
-                <div class="order_payments">${imgLay}</div> ${e.volumeMin}-${e.volumeMax} ${e.price}</div>`
+                layout += `
+                <div>
+                <div class="order"><div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div> ${e.exchange} 
+                <div class="order_payments">${imgLay}</div> 
+                <div class="volume"><span class="volume-min">${e.volumeMin}</span>-<span class="volume-max">${e.volumeMax}</span></div>
+                ${e.price} <br> 
+                </div>
+                <div class="order_drop hide">Продавец:${e.owner} Рейтинг:<span class="rate">${e.rate}</span>% Сделок:<span class="count">${e.count}</span></div>
+                </div>
+                `
             }
             
         })
