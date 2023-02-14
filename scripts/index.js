@@ -7,6 +7,7 @@ import { sellClick } from "./openClicks.js"
 import { allMethods } from "./renderBlock.js"
 import { checkerData } from "./checker.js"
 import { getOrders } from "./data.js"
+import { hideAllEl } from "./filters.js"
 
 const filters = document.querySelector('.filters')
 const hideBtn = document.querySelector('.filter_hide')
@@ -57,17 +58,19 @@ if (document.readyState !== 'loading') {
     removeAll.addEventListener('click', () => {
 
         if (buy.classList.contains('activate')) {
+            hideAllEl('buy_order_list')
             document.querySelectorAll('.form-buy').forEach(e => {
                 e.checked = false
                 allMethods('order_imges_buy', '')
-                allMethods('buy_order_list', '')
+                // allMethods('buy_order_list', '')
             })
              
         } else {
+            hideAllEl('sell_order_list')
             document.querySelectorAll('.form-sell').forEach(e => {
                 e.checked = false
                 allMethods('order_imges_sell', '')
-                allMethods('sell_order_list', '')
+                // allMethods('sell_order_list', '')
             })
              
         }
@@ -75,6 +78,7 @@ if (document.readyState !== 'loading') {
     })
     addAll.addEventListener('click', () => {
         if (buy.classList.contains('activate')) {
+            getOrders()
             document.querySelectorAll('.form-buy').forEach(e => {
                 e.checked = true
                 allMethods('order_imges_buy', '')
@@ -82,6 +86,7 @@ if (document.readyState !== 'loading') {
             })
              
         } else {
+            getOrders('sell')
             document.querySelectorAll('.form-sell').forEach(e => {
                 e.checked = true
                 allMethods('order_imges_sell', '')

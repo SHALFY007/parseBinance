@@ -1,4 +1,7 @@
 import { renderList } from "./renderBlock.js"
+import { hideEl } from "./filters.js"
+import { showEl } from "./filters.js"
+
 
 export function checkerData(checker) {
     // const checker = document.querySelectorAll('.form-check')
@@ -12,27 +15,9 @@ export function checkerData(checker) {
             let currencyId = valueName.innerHTML
             
             if (!isBuy.classList.contains('hide')) {
-                //Test
-            if(imgId.includes('(')) {
-                let ind = imgId.indexOf('(')
-                imgId = imgId.substring(0, ind)
-            }
-            if(e.target.parentElement.classList.contains('form-currencies-list')) {
-                document.querySelectorAll(`.order-currency-${currencyId}-buy`).forEach(e => {
-                    e.parentNode.classList.add('hide')
-                })
-            } else {
-                document.querySelectorAll(`.order-${imgId}-buy`).forEach(e => {
-                    if (e.parentElement.children.length < 2 || e.parentElement.querySelectorAll('.hide').length === e.parentElement.children.length-1) {
-    
-                        e.parentElement.parentNode.classList.add('hide')
-                    } else {
-                        e.classList.add('hide')
-                    }
-                })
-            }
+
+            hideEl(imgId, currencyId, e, 'buy')
             
-            //end test
                 if (!isChecked) {
                     if(imgId.includes('(')) {
                         let ind = imgId.indexOf('(')
@@ -48,51 +33,15 @@ export function checkerData(checker) {
                         
                     }
                     let link = `./img/${imgId}.png`
-                    //
-                    if(imgId.includes('(')) {
-                        let ind = imgId.indexOf('(')
-                        imgId = imgId.substring(0, ind)
-                    }
-                    if(e.target.parentElement.classList.contains('form-currencies-list')) {
-                        document.querySelectorAll(`.order-currency-${currencyId}-buy`).forEach(e => {
-                            e.parentNode.classList.remove('hide')
-                        })
-                    } else {
-                        document.querySelectorAll(`.order-${imgId}-buy`).forEach(e => {
-                            if (e.parentElement.children.length < 2 || e.parentElement.querySelectorAll('.hide').length <= e.parentElement.children.length-1) {
-                                
-                                e.parentElement.parentNode.classList.remove('hide')
-                                e.classList.remove('hide')
-                            } else {
-                                e.classList.remove('hide')
-                            }
-                        })
-                    }
-                    
+
+                    showEl(imgId, currencyId, e, 'buy')
                     
                     //
                     renderList('order_imges_buy', `<img src="${link}" alt="${imgId}" id="${imgId}-buy" class="logo">`)
                 }
                 
             } else {
-            if(imgId.includes('(')) {
-                let ind = imgId.indexOf('(')
-                imgId = imgId.substring(0, ind)
-            }
-            if(e.target.parentElement.classList.contains('form-currencies-list')) {
-                document.querySelectorAll(`.order-currency-${currencyId}-sell`).forEach(e => {
-                    e.parentNode.classList.add('hide')
-                })
-            } else {
-                document.querySelectorAll(`.order-${imgId}-sell`).forEach(e => {
-                
-                    if (e.parentElement.children.length < 2 || e.parentElement.querySelectorAll('.hide').length === e.parentElement.children.length-1) {
-                        e.parentElement.parentNode.classList.add('hide')
-                    } else { 
-                        e.classList.add('hide')
-                    }
-                })
-            }
+            hideEl(imgId, currencyId, e, 'sell')
             
             
                 if (!isChecked) {
@@ -108,21 +57,7 @@ export function checkerData(checker) {
                         let ind = imgId.indexOf('(')
                         imgId = imgId.substring(0, ind)
                     }
-                    if(e.target.parentElement.classList.contains('form-currencies-list')) {
-                        document.querySelectorAll(`.order-currency-${currencyId}-sell`).forEach(e => {
-                            e.parentNode.classList.remove('hide')
-                        })
-                    } else {
-                        document.querySelectorAll(`.order-${imgId}-sell`).forEach(e => {
-                            if (e.parentElement.children.length < 2 || e.parentElement.querySelectorAll('.hide').length <= e.parentElement.children.length-1) {
-                                
-                                e.parentElement.parentNode.classList.remove('hide')
-                                e.classList.remove('hide')
-                            } else {
-                                e.classList.remove('hide')
-                            }
-                        })
-                    }
+                    showEl(imgId, currencyId, e, 'sell')
                     
                     
                     let link = `./img/${imgId}.png`
