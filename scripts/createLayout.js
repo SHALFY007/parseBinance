@@ -56,7 +56,7 @@ export function getOrderList(orders, action) {
             
             if (e.payments.length <2) {
                 layout += `
-                <div>
+                <div class="all-orders-list">
                 <div class="order">
                 <div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div>  ${e.exchange} <div class="order_payments">
                  <img src="./img/${e.payments}.png" alt="${e.payments}" class='logo order-${e.payments}-${action}'></div> 
@@ -73,7 +73,7 @@ export function getOrderList(orders, action) {
                     imgLay += `<img src="./img/${el}.png" alt="${el}" class='logo order-${el}-${action}'> `
                 })
                 layout += `
-                <div>
+                <div  class="all-orders-list">
                 <div class="order"><div class="order-currency order-currency-${e.currency}-${action}" id="">${e.currency}</div> ${e.exchange} 
                 <div class="order_payments">${imgLay}</div> 
                 <div class="volume"><span class="volume-min">${e.volumeMin}</span>-<span class="volume-max">${e.volumeMax}</span></div>

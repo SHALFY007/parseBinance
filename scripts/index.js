@@ -79,7 +79,11 @@ if (document.readyState !== 'loading') {
     })
     addAll.addEventListener('click', () => {
         if (buy.classList.contains('activate')) {
-            getOrders()
+            // getOrders()
+            let list = document.querySelector('#buy_order_list')
+            list.querySelectorAll('.all-orders-list').forEach(e => {
+                e.classList.remove('hide')
+            })
             document.querySelectorAll('.form-buy').forEach(e => {
                 e.checked = true
                 allMethods('order_imges_buy', '')
@@ -87,7 +91,11 @@ if (document.readyState !== 'loading') {
             })
              
         } else {
-            getOrders('sell')
+            // getOrders('sell')
+            let list = document.querySelector('#sell_order_list')
+            list.querySelectorAll('.all-orders-list').forEach(e => {
+                e.classList.remove('hide')
+            })
             document.querySelectorAll('.form-sell').forEach(e => {
                 e.checked = true
                 allMethods('order_imges_sell', '')
@@ -116,18 +124,25 @@ if (document.readyState !== 'loading') {
     let order = document.querySelectorAll('.order')
 
     if (order) {
+        
         order.forEach(e => {
             e.addEventListener('click', event => {
-                console.log(event)
                 if (document.querySelector('.active_bg') && document.querySelector('.active_bg') != event.target) {
                     document.querySelector('.active_bg').parentNode.querySelector('.order_drop').classList.add('hide')
                     document.querySelector('.active_bg').classList.remove('active_bg')
                     
                 }
+                console.log(event.target.parentNode.parentNode)
                 // console.log(event.target)
-                let infoEl = event.target.parentNode.querySelector('.order_drop')
+                let q 
+                if (event.target.classList.contains('order')) {
+                     q = event.target
+                } else {
+                     q = event.target.parentNode.parentNode
+                }
+                let infoEl = q.parentNode.querySelector('.order_drop')
                 infoEl.classList.toggle('hide')
-                event.target.classList.toggle('active_bg')
+                q.classList.toggle('active_bg')
             })
         })
     }   
